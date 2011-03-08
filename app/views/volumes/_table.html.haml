@@ -1,0 +1,19 @@
+%table
+  %tr
+    %th Creation Date
+    %th Submission Date
+    %th School Name
+    %th Issue Name
+    %th Pages
+    %th Visible
+    %th Job Number
+  -@volumes.each do |volume|
+    %tr{:class => cycle('alternate_row','') }
+      %td= volume.created_at
+      %td= volume.submitted_at.nil? ? "N/A" : volume.submitted_at
+      %td= volume.school.name
+      %td= volume.issue_name
+      %td= volume.number_of_pages
+      %td= volume.visible? ? "Yes" : "No"
+      %td= volume.job_number == "" ? "N/A" : volume.job_number
+      %td= link_to "View this volume", volume

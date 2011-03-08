@@ -1,0 +1,20 @@
+%h1= "#{@volume.name} - #{@volume.issue_name}"
+%h2
+  = "#{@volume.school.name} - "
+  = link_to "View This School", @volume.school
+%br
+-if @volume.visible?
+  = link_to "Make this volume invisible", toggle_visibility_volume_path(@volume)
+-else
+  = link_to "Make this volume visible", toggle_visibility_volume_path(@volume)
+%br
+%h2 Pages
+-@volume.pages.order("PageNumber ASC").each do |page|
+  .page_container
+    =image_tag page.thumbnail_url
+    %p
+      = link_to "Render",page.render_url
+      |
+      = link_to "Debug",page.debug_url
+    %p= "Page #{page.page_number}"
+.clear
