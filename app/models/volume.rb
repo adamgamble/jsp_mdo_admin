@@ -5,6 +5,8 @@ class Volume < ActiveRecord::Base
   belongs_to :school, :foreign_key => "id_School"
   has_many :pages, :foreign_key => "id_Volume"
 
+  scope :submitted, lambda{ {:conditions => ["id_Job != ''"]}}
+
   def name
     self.NameVolume
   end

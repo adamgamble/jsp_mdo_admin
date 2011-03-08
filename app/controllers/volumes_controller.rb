@@ -5,7 +5,7 @@ class VolumesController < ApplicationController
 private
 
   def load_volumes
-    @volumes = Volume.page(params[:page]).per(10)
+    @volumes = Volume.submitted.order("DateSubmitted DESC").page(params[:page]).per(10)
   end
 
   def load_volume
